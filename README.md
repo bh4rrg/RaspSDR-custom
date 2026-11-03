@@ -49,8 +49,8 @@ RaspSDR（125MHz ADC 版 KiwiSDR）傻瓜式系统镜像：刷完即用，无需
 - FPGA 位流：`RaspSDR.rx4.wf3.bit`（内置于 `/usr/local/bin/`）
 - Web 端口：8173
 - GPS：默认关闭（省 CPU，需要时去掉 `/etc/init.d/kiwid` 里的 `-gps` 参数）
-- 源码：**唯一入口** https://github.com/bh4rrg/Beagle_SDR_GPS 分支 `wf3-asym-125mhz`（全部定制代码在该分支的单个提交内：FPGA 位流、C++、Verilog、Web 前端）
-- `RaspSDR/Beagle_SDR_GPS` 只是上游 jks-prv 的镜像 fork，不含任何定制代码，请勿在其中找源码
+- 源码：**唯一入口** https://github.com/bh4rrg/RaspSDR-custom （定制补丁 + FPGA 位流 + 基于上游 jks-prv/Beagle_SDR_GPS 的构建说明）
+- 完整历史形态的开发 fork 已转私有，公开页面只保留我自己的内容
 
 ## 本发布仓库说明
 
