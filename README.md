@@ -1,6 +1,6 @@
-# RaspSDR 固件镜像发布
+# RaspSDR（125MHz 版）源码与固件发布
 
-RaspSDR（125MHz ADC 版 KiwiSDR）傻瓜式系统镜像：刷完即用，无需编译、无需配置。
+RaspSDR（125MHz ADC 版 KiwiSDR）：本仓库包含全部定制源码（补丁形式）与刷完即用的系统镜像，无需编译、无需配置。
 
 ## 当前版本
 
@@ -49,12 +49,25 @@ RaspSDR（125MHz ADC 版 KiwiSDR）傻瓜式系统镜像：刷完即用，无需
 - FPGA 位流：`RaspSDR.rx4.wf3.bit`（内置于 `/usr/local/bin/`）
 - Web 端口：8173
 - GPS：默认关闭（省 CPU，需要时去掉 `/etc/init.d/kiwid` 里的 `-gps` 参数）
-- 源码：**唯一入口** https://github.com/bh4rrg/RaspSDR-custom （定制补丁 + FPGA 位流 + 基于上游 jks-prv/Beagle_SDR_GPS 的构建说明）
-- 完整历史形态的开发 fork 已转私有，公开页面只保留我自己的内容
 
-## 本发布仓库说明
+## 源码与构建
 
-固件镜像（`.img.xz`）只放在本仓库的 Releases，不进代码树；刷机用户只需下载 Release 附件。
+本仓库代码树只放我自己的内容：
+
+| 文件 | 说明 |
+|---|---|
+| `raspsdr-wf3-asym-125mhz.patch` | 全部定制代码（29 个文件：FPGA 位流、C++、Verilog、Web 前端），基于上游提交 `bc7e919f` |
+| `RaspSDR.rx4.wf3.bit` | 编译好的位流（xc7a35tftg256-1，Vivado 2017.4），可直接放入 `/usr/local/bin/` |
+
+得到完整源码（上游 https://github.com/jks-prv/Beagle_SDR_GPS + 本补丁）：
+
+```bash
+git clone https://github.com/jks-prv/Beagle_SDR_GPS
+cd Beagle_SDR_GPS && git checkout bc7e919f
+git am < ../raspsdr-wf3-asym-125mhz.patch
+cd verilog && make        # 重生成位流（需 Vivado 2017.4）
+make ../build/kiwid.bin   # 生产构建（需 clang-11）
+```
 
 ## 已知注意事项
 
