@@ -1,4 +1,4 @@
-# RaspSDR（125MHz 版）源码与固件发布
+# RaspSDR（定制优化版）源码与固件发布
 
 RaspSDR（125MHz ADC 版 KiwiSDR）：本仓库包含全部定制源码（补丁形式）与刷完即用的系统镜像，无需编译、无需配置。
 
@@ -52,14 +52,14 @@ RaspSDR（125MHz ADC 版 KiwiSDR）：本仓库包含全部定制源码（补丁
 
 ## 源码与构建
 
-本仓库代码树只放我自己的内容：
+本仓库代码树仅放优化定制部分内容：
 
 | 文件 | 说明 |
 |---|---|
 | `raspsdr-wf3-asym-125mhz.patch` | 全部定制代码（29 个文件：FPGA 位流、C++、Verilog、Web 前端），基于上游提交 `bc7e919f` |
 | `RaspSDR.rx4.wf3.bit` | 编译好的位流（xc7a35tftg256-1，Vivado 2017.4），可直接放入 `/usr/local/bin/` |
 
-得到完整源码（上游 https://github.com/jks-prv/Beagle_SDR_GPS + 本补丁）：
+完整源码请自行下载（上游 https://github.com/jks-prv/Beagle_SDR_GPS + 本补丁）：
 
 ```bash
 git clone https://github.com/jks-prv/Beagle_SDR_GPS
